@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BetterCLS (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "BetterCLS (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

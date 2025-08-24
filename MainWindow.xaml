@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="BetterCLS.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BetterCLS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:ic="using:FluentIcons.WinUI"
+    Title="BetterCLS">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" x:Name="GridTitleBar">
+            <TextBlock FontFamily="Noto Sans SC" Text="StaticCLS For Windows" Margin="15,0,0,0" VerticalAlignment="Center"></TextBlock>
+        </Grid>
+        <Grid Grid.Row="1" Padding="20,10,20,10" RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <AutoSuggestBox Grid.Row="0"  PlaceholderText="输入姓名开始搜索" x:Name="search" TextChanged="search_TextChanged" SuggestionChosen="search_SuggestionChosen" UpdateTextOnSelect="False">
+                <AutoSuggestBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Name}" HorizontalAlignment="Left"></TextBlock>
+                            <TextBlock Text="{Binding College}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" HorizontalAlignment="Right"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </AutoSuggestBox.ItemTemplate>
+            </AutoSuggestBox>
+            <Frame Grid.Row="1" x:Name="RootFrame">
+                <Border Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="1" CornerRadius="5" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10,30,10,30">
+                    <StackPanel Orientation="Vertical" Spacing="15">
+                        <TextBlock Text="🥰" HorizontalAlignment="Center" FontSize="24"></TextBlock>
+                        <TextBlock Text="今天想要去哪里上课呢~" FontSize="18" FontWeight="SemiBold" Foreground="LightSeaGreen"></TextBlock>
+                        <HyperlinkButton Content="自定义数据源" x:Name="settings" Click="settings_Click" HorizontalAlignment="Center"></HyperlinkButton>
+                    </StackPanel>
+                    
+                </Border>
+                
+                
+            </Frame>
+            <TeachingTip x:Name="About" Target="{x:Bind RootFrame}" IsLightDismissEnabled="True" TailVisibility="Collapsed">
+                <StackPanel Orientation="Vertical" Spacing="10">
+                    <Grid>
+                        <TextBlock Text="Better-CsvLinearScanner" FontWeight="SemiBold" VerticalAlignment="Center" Foreground="LightSeaGreen"></TextBlock>
+                        <Button  Padding="7"  BorderThickness="0" HorizontalAlignment="Right" x:Name="close" Click="close_Click" Background="LightGray">
+                            <FontIcon Glyph="&#xE711;" />
+                        </Button>
+                    </Grid>
+                    <Border Margin="5" Background="#77eeeeee" CornerRadius="4">
+                        <TextBlock  Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="Wrap">
+                <Run Text="简洁的CSV文件索引工具,"></Run>
+                <LineBreak></LineBreak>
+                <Run Text="由Ansherly用摸🐟打造。"></Run>
+                <LineBreak></LineBreak>
+                
+                <Hyperlink  x:Name="Git" Click="Git_Click">Github仓库</Hyperlink>
+                        </TextBlock>
+                    </Border>
+
+                    <TextBox  x:Name="source" PlaceholderText="默认使用内置数据源"></TextBox>
+                    <Grid>
+                        <Button  Padding="7"  BorderThickness="0"  x:Name="rec" Click="rec_Click" Background="LightGray" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <ic:SymbolIcon Symbol="LeafOne"></ic:SymbolIcon>
+                                <TextBlock Text="使用默认数据库"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button  Padding="7"  BorderThickness="0"  x:Name="switchsource" Click="source_Click" Background="LightGray" HorizontalAlignment="Right">
+                            <ic:SymbolIcon Symbol="Folder"></ic:SymbolIcon>
+                        </Button>
+                    </Grid>
+
+                </StackPanel>
+            </TeachingTip>
+        </Grid>
+        <local:InfoFlower x:Name="Flower" Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center"></local:InfoFlower>
+    </Grid>
+    
+</Window>
